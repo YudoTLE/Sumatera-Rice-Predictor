@@ -15,7 +15,7 @@ The dataset used for this project consists of historical rice production data (f
 ### Prerequisites
 Clone this repository to your local machine:
 ```bash
-git clone https://github.com/yourusername/Sumatera-Rice-Predictor.git
+git clone https://github.com/YudoTLE/Sumatera-Rice-Predictor.git
 cd Sumatera-Rice-Predictor
 ```
 
