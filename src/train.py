@@ -3,6 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
 from tensorflow.keras.models import Sequential
+from tensorflow.keras.callbacks import EarlyStopping
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.optimizers import Adam
 
@@ -41,17 +42,19 @@ model = Sequential()
 
 
 # Neural Network Layers
-model.add(Dense(64, input_dim=3, activation='relu'))    # Input layer (3 features) + Hidden layer
-model.add(Dense(32, activation='relu'))                 # Hidden layer           
-model.add(Dense(1))                                     # Output layer (1 value: the prediction)
+model.add(Dense(128, input_dim=3, activation='relu'))   # Hidden layer
+model.add(Dense(96, activation='relu'))                 # Hidden layer
+model.add(Dense(64, activation='relu'))                 # Hidden layer
+model.add(Dense(1))                                     # Output layer
 
 
 # Compile the model
-model.compile(optimizer=Adam(), loss='mean_squared_error')
+model.compile(optimizer=Adam(learning_rate=0.001), loss='mean_squared_error')
 
 
 # Train the model
-model.fit(X_train, y_train, epochs=128, batch_size=32, validation_split=0.2)
+early_stopping = EarlyStopping(monitor='val_loss', patience=64, restore_best_weights=True)
+model.fit(X_train, y_train, epochs=256, batch_size=32, validation_split=0.2, callbacks=[early_stopping])
 
 
 # Evaluate the model
