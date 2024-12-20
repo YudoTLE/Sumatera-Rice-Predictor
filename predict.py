@@ -12,9 +12,9 @@ scaler = joblib.load('src/scaler.pkl')
 
 # Prediction based on user input
 while True:
-    rainfall    = float(input('Rainfall (mm)   : '))
-    humidity    = float(input('Humidity (%)    : '))
-    temperature = float(input('Temperature (°C): '))
+    rainfall    = float(input('Rainfall (mm) per month: '))
+    humidity    = float(input('Humidity (%)           : '))
+    temperature = float(input('Temperature (°C)       : '))
 
     new_data = np.array([[rainfall, humidity, temperature]])
 
